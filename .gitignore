@@ -1,0 +1,30 @@
+# Runtime data — downloaded files + metadata (PERSONAL, never sync)
+/data/
+data/
+*.db
+*.sqlite
+
+# Local config / secrets / logs (PERSONAL, never sync)
+.env
+.env.*
+*.log
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+.DS_Store

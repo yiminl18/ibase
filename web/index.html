@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ibase</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>ibase</h1>
+      <span id="status" class="status" title="LLM backend status"></span>
+    </div>
+
+    <div class="controls">
+      <div class="control">
+        <label>Search</label>
+        <div class="search-group">
+          <input id="q" type="search" placeholder="keyword or natural-language query…" />
+          <label class="chk" title="Use the LLM for semantic search">
+            <input id="semantic" type="checkbox" /> semantic
+          </label>
+        </div>
+      </div>
+
+      <div class="control">
+        <label>Read</label>
+        <select id="read">
+          <option value="">All</option>
+          <option value="false">Unread</option>
+          <option value="true">Read</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>Topic</label>
+        <select id="topic"><option value="">All</option></select>
+      </div>
+
+      <div class="control">
+        <label>Sort</label>
+        <select id="sort">
+          <option value="inserted_at">Date added</option>
+          <option value="name">Name</option>
+          <option value="read">Read status</option>
+          <option value="topics">Topic</option>
+          <option value="size_bytes">Size</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>Order</label>
+        <select id="order">
+          <option value="desc">Desc</option>
+          <option value="asc">Asc</option>
+        </select>
+      </div>
+
+      <button id="add-btn" class="primary">+ Add</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="count" class="count"></div>
+    <div id="pending" class="pending" hidden></div>
+    <ul id="list" class="list"></ul>
+    <div id="empty" class="empty" hidden>No items yet. Click <b>+ Add</b> to digest a link or file.</div>
+  </main>
+
+  <!-- Add modal -->
+  <dialog id="add-dialog">
+    <form id="add-form" method="dialog">
+      <h2>Add item</h2>
+      <label>Link or local file path
+        <input id="add-link" type="text" placeholder="https://… or /path/to/file.pdf" />
+      </label>
+      <div class="or-sep"><span>or drop a file</span></div>
+      <div id="dropzone" class="dropzone" tabindex="0">
+        <p><b>Drag &amp; drop</b> any file here, or <span class="link">browse</span></p>
+        <p id="dropfile" class="dropfile" hidden></p>
+        <input id="file-input" type="file" hidden />
+      </div>
+      <label>Note
+        <textarea id="add-note" rows="2" placeholder="optional"></textarea>
+      </label>
+      <p class="hint">Content is downloaded, text/OCR extracted, and both a summary
+      and topics are generated automatically. You can edit topics later.</p>
+      <div class="row-actions">
+        <button value="cancel" type="button" id="add-cancel">Cancel</button>
+        <button value="ok" class="primary" id="add-submit">Digest</button>
+      </div>
+      <div id="add-status" class="add-status" hidden></div>
+    </form>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
